@@ -9,33 +9,44 @@ public class ArrayStorage {
     private int size = 0;
 
     void clear() {
-        for (Resume resume : storage) {
-            resume = null;
-        }
-        size = 0;
+        // Arrays.fill used instead of the cycle FOR;
+        Arrays.fill(storage, 0, size, null);
     }
 
     void save(Resume r) {
-        storage[size] = r;
-        size++;
+        if (size == 9999) {  // Check out of bounds array
+            System.out.println("Array overflow");
+        } else {
+            storage[size] = r;
+            size++;
+        }
     }
 
+    // Second version
+//        try {
+//            storage[size] = r;
+//            size++;
+//        } catch (IndexOutOfBoundsException e) {
+//            System.out.println("Array overflow");
+//        }
+//    }
+
     Resume get(String uuid) {
-        Resume r = null;
+        // Without temporary variables
         for (int i = 0; i < size; i++) {
             if (uuid.equals(storage[i].uuid)) {
-                r = storage[i];
+                return storage[i];
             }
         }
-        return r;
+        return null;
     }
 
     void delete(String uuid) {
         for (int i = 0; i < size; i++) {
             if (storage[i].uuid.equals(uuid)) {
-                storage[i] = storage[size - 1];
-                storage[size - 1] = null;
                 size--;
+                storage[i] = storage[size];
+                storage[size] = null;
             }
         }
     }
