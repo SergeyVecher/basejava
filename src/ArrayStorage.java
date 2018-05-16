@@ -11,6 +11,7 @@ public class ArrayStorage {
     void clear() {
         // Arrays.fill used instead of the cycle FOR;
         Arrays.fill(storage, 0, size, null);
+        size = 0;
     }
 
     void save(Resume r) {
