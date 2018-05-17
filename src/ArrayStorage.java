@@ -5,17 +5,17 @@ import java.util.Arrays;
  * Array based storage for Resumes
  */
 public class ArrayStorage {
-    private Resume[] storage = new Resume[10000];
+    private final int STORAGE_MAX_SIZE = 10000;
+    private Resume[] storage = new Resume[STORAGE_MAX_SIZE];
     private int size = 0;
 
     void clear() {
-        // Arrays.fill used instead of the cycle FOR;
         Arrays.fill(storage, 0, size, null);
         size = 0;
     }
 
     void save(Resume r) {
-        if (size == 9999) {  // Check out of bounds array
+        if (size == 10000) {
             System.out.println("Array overflow");
         } else {
             storage[size] = r;
@@ -23,17 +23,7 @@ public class ArrayStorage {
         }
     }
 
-    // Second version
-//        try {
-//            storage[size] = r;
-//            size++;
-//        } catch (IndexOutOfBoundsException e) {
-//            System.out.println("Array overflow");
-//        }
-//    }
-
     Resume get(String uuid) {
-        // Without temporary variables
         for (int i = 0; i < size; i++) {
             if (uuid.equals(storage[i].uuid)) {
                 return storage[i];
