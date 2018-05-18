@@ -15,7 +15,7 @@ public class ArrayStorage {
     }
 
     void save(Resume r) {
-        if (size == 10000) {
+        if (size == STORAGE_MAX_SIZE) {
             System.out.println("Array overflow");
         } else {
             storage[size] = r;
