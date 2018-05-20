@@ -14,6 +14,16 @@ public class ArrayStorage {
         size = 0;
     }
 
+    void update(Resume resume) {
+        for (Resume resume1 : storage) {
+            if (resume.equals(resume1)) {
+                System.out.println("This resume is in the database");
+            } else {
+                save(resume);
+            }
+        }
+    }
+
     void save(Resume r) {
         if (size == STORAGE_MAX_SIZE) {
             System.out.println("Array overflow");
@@ -27,6 +37,8 @@ public class ArrayStorage {
         for (int i = 0; i < size; i++) {
             if (uuid.equals(storage[i].uuid)) {
                 return storage[i];
+            } else {
+                System.out.println("This resume is not in the database");
             }
         }
         return null;
@@ -38,6 +50,8 @@ public class ArrayStorage {
                 size--;
                 storage[i] = storage[size];
                 storage[size] = null;
+            } else {
+                System.out.println("This resume is not in the database");
             }
         }
     }
