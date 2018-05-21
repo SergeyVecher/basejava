@@ -1,5 +1,8 @@
+import com.javawebinar.basejava.model.Resume;
+import com.javawebinar.basejava.storage.ArrayStorage;
+
 /**
- * Test for com.urise.webapp.storage.ArrayStorage
+ * Test for com.urise.webapp.storage.com.javawebinar.basejava.storage.ArrayStorage
  */
 public class MainTestArrayStorage {
     static final ArrayStorage ARRAY_STORAGE = new ArrayStorage();

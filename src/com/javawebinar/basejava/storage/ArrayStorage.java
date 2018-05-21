@@ -1,3 +1,7 @@
+package com.javawebinar.basejava.storage;
+
+import com.javawebinar.basejava.model.Resume;
+
 import java.util.Arrays;
 
 
@@ -12,22 +16,22 @@ public class ArrayStorage {
     public void clear() {
         Arrays.fill(storage, 0, size, null);
         size = 0;
-        System.out.println(" All resumes deleted successfully");
+        System.out.println(" All resumes were deleted successfully");
     }
 
     public void update(Resume resume) {
         int index = getIndex(resume.getUuid());
         if (index != -1) {
             storage[index] = resume;
-            System.out.println("Update completed successfully");
+            System.out.println("Update resume " + resume.getUuid() + " was completed successfully");
         } else {
-            System.out.println("This resume is not in the database");
+            printInTheDatabaseThereIsNotThisResume(resume.getUuid());
         }
     }
 
     public void save(Resume r) {
         if (size == STORAGE_MAX_SIZE) {
-            System.out.println("Array overflow");
+            System.out.println("This database is overflow");
         } else {
             storage[size] = r;
             size++;
@@ -39,7 +43,7 @@ public class ArrayStorage {
         if (index != -1) {
             return storage[index];
         }
-        PrintIsNotInTheDatabase(uuid);
+        printInTheDatabaseThereIsNotThisResume(uuid);
         return null;
     }
 
@@ -49,9 +53,9 @@ public class ArrayStorage {
             size--;
             storage[index] = storage[size];
             storage[size] = null;
-            System.out.println("Delete Ok");
+            System.out.println(uuid + " resume was deleted successfully");
         } else {
-            PrintIsNotInTheDatabase(uuid);
+            printInTheDatabaseThereIsNotThisResume(uuid);
         }
     }
 
@@ -63,8 +67,8 @@ public class ArrayStorage {
         return Arrays.copyOf(storage, size);
     }
 
-    public int size() {
-        return size;
+    public String size() {
+        return "This is actual size = " + size;
     }
 
     private int getIndex(String uuid) {
@@ -76,7 +80,7 @@ public class ArrayStorage {
         return -1;
     }
 
-    private void PrintIsNotInTheDatabase(String uuid) {
-        System.out.println("This resume " + uuid + " is not in the database.");
+    private void printInTheDatabaseThereIsNotThisResume(String uuid) {
+        System.out.println("In the database there is not " + uuid + " resume");
     }
 }

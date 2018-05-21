@@ -1,9 +1,12 @@
+import com.javawebinar.basejava.model.Resume;
+import com.javawebinar.basejava.storage.ArrayStorage;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
 /**
- * Test for com.urise.webapp.storage.ArrayStorage
+ * Test for com.urise.webapp.storage.com.javawebinar.basejava.storage.ArrayStorage
  */
 public class MainArray {
     private final static ArrayStorage ARRAY_STORAGE = new ArrayStorage();

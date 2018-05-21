@@ -32,10 +32,10 @@
 
 ## Домашнее задание
 
-> Правка к видео: com.javawebinar.webapp.storage.ArrayStorage.delete() - вместо `storage[i] = null` нужно `storage[size-1] = null`
+> Правка к видео: com.javawebinar.webapp.storage.com.javawebinar.basejava.storage.ArrayStorage.delete() - вместо `storage[i] = null` нужно `storage[size-1] = null`
 
 - Прочитать <a href="http://www.intuit.ru/studies/courses/16/16/lecture/27113?page=4">Соглашения по именованию.</a>
-- Реализовать `com.javawebinar.webapp.storage.ArrayStorage.update`
-- Сделать проверки: в `update/delete/get` - резюме есть в storage, в `save`- нет в storage: `System.out.println("com.javawebinar.webapp.model.Resume ...")`.
+- Реализовать `com.javawebinar.webapp.storage.com.javawebinar.basejava.storage.ArrayStorage.update`
+- Сделать проверки: в `update/delete/get` - резюме есть в storage, в `save`- нет в storage: `System.out.println("com.javawebinar.webapp.model.com.javawebinar.basejava.model.Resume ...")`.
 - Сделать в save проверку на переполнениеe: `System.out.println("...")`.
-- Избавится от дублирования в коде `com.javawebinar.webapp.storage.ArrayStorage`
+- Избавится от дублирования в коде `com.javawebinar.webapp.storage.com.javawebinar.basejava.storage.ArrayStorage`
