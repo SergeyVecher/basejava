@@ -9,22 +9,23 @@ public class ArrayStorage {
     private Resume[] storage = new Resume[STORAGE_MAX_SIZE];
     private int size = 0;
 
-    void clear() {
+    public void clear() {
         Arrays.fill(storage, 0, size, null);
         size = 0;
+        System.out.println(" All resumes deleted successfully");
     }
 
-    void update(Resume resume) {
-        for (Resume resume1 : storage) {
-            if (resume.equals(resume1)) {
-                System.out.println("This resume is in the database");
-            } else {
-                save(resume);
-            }
+    public void update(Resume resume) {
+        int index = getIndex(resume.getUuid());
+        if (index != -1) {
+            storage[index] = resume;
+            System.out.println("Update completed successfully");
+        } else {
+            System.out.println("This resume is not in the database");
         }
     }
 
-    void save(Resume r) {
+    public void save(Resume r) {
         if (size == STORAGE_MAX_SIZE) {
             System.out.println("Array overflow");
         } else {
@@ -33,37 +34,49 @@ public class ArrayStorage {
         }
     }
 
-    Resume get(String uuid) {
-        for (int i = 0; i < size; i++) {
-            if (uuid.equals(storage[i].uuid)) {
-                return storage[i];
-            } else {
-                System.out.println("This resume is not in the database");
-            }
+    public Resume get(String uuid) {
+        int index = getIndex(uuid);
+        if (index != -1) {
+            return storage[index];
         }
+        PrintIsNotInTheDatabase(uuid);
         return null;
     }
 
-    void delete(String uuid) {
-        for (int i = 0; i < size; i++) {
-            if (storage[i].uuid.equals(uuid)) {
-                size--;
-                storage[i] = storage[size];
-                storage[size] = null;
-            } else {
-                System.out.println("This resume is not in the database");
-            }
+    public void delete(String uuid) {
+        int index = getIndex(uuid);
+        if (index != -1) {
+            size--;
+            storage[index] = storage[size];
+            storage[size] = null;
+            System.out.println("Delete Ok");
+        } else {
+            PrintIsNotInTheDatabase(uuid);
         }
     }
+
 
     /**
      * @return array, contains only Resumes in storage (without null)
      */
-    Resume[] getAll() {
+    public Resume[] getAll() {
         return Arrays.copyOf(storage, size);
     }
 
-    int size() {
+    public int size() {
         return size;
+    }
+
+    private int getIndex(String uuid) {
+        for (int i = 0; i < size; i++) {
+            if (uuid.equals(storage[i].getUuid())) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    private void PrintIsNotInTheDatabase(String uuid) {
+        System.out.println("This resume " + uuid + " is not in the database.");
     }
 }
