@@ -16,7 +16,7 @@ public class ArrayStorage {
     public void clear() {
         Arrays.fill(storage, 0, size, null);
         size = 0;
-        System.out.println(" All resumes were deleted successfully");
+        System.out.println("All resumes were deleted successfully");
     }
 
     public void update(Resume resume) {
@@ -56,7 +56,7 @@ public class ArrayStorage {
             size--;
             storage[index] = storage[size];
             storage[size] = null;
-            System.out.println(uuid + " resume was deleted successfully");
+            System.out.println("Resume with uuid = " + uuid + " was deleted successfully");
         } else {
             printThereIsNotThisResume(uuid);
         }
