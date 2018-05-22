@@ -33,7 +33,7 @@ public class ArrayStorage {
         int index = getIndex(resume.getUuid());
         if (size == STORAGE_MAX_SIZE || index != -1) {
             if (size == STORAGE_MAX_SIZE) System.out.println("This database is overflow");
-            if (index !=1) System.out.println("Resume with uuid = " + index + " is already in the database");
+            if (index != -1) System.out.println("Resume with uuid = " + resume.getUuid() + " is already in the database");
         } else {
             storage[size] = resume;
             size++;
