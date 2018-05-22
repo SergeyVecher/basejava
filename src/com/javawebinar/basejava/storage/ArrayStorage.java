@@ -23,21 +23,21 @@ public class ArrayStorage {
         int index = getIndex(resume.getUuid());
         if (index != -1) {
             storage[index] = resume;
-            printUpdateOrSaveResume("Update",resume.getUuid());
+            printUpdateOrSaveResume("Update", resume.getUuid());
         } else {
-            printThereIsNotThisResume(resume.getUuid());
+            printResumeIsNotExist(resume.getUuid());
         }
     }
 
     public void save(Resume resume) {
-        int index = getIndex(resume.getUuid());
-        if (size == STORAGE_MAX_SIZE || index != -1) {
-            if (size == STORAGE_MAX_SIZE) System.out.println("This database is overflow");
-            if (index != -1) System.out.println("Resume with uuid = " + resume.getUuid() + " is already in the database");
+        if (size == STORAGE_MAX_SIZE) {
+            System.out.println("This database is overflow");
+        } else if (getIndex(resume.getUuid()) != -1) {
+            System.out.println("Resume with uuid = " + resume.getUuid() + " is already in the database");
         } else {
             storage[size] = resume;
             size++;
-            printUpdateOrSaveResume("Save",resume.getUuid());
+            printUpdateOrSaveResume("Save", resume.getUuid());
         }
     }
 
@@ -46,7 +46,7 @@ public class ArrayStorage {
         if (index != -1) {
             return storage[index];
         }
-        printThereIsNotThisResume(uuid);
+        printResumeIsNotExist(uuid);
         return null;
     }
 
@@ -58,7 +58,7 @@ public class ArrayStorage {
             storage[size] = null;
             System.out.println("Resume with uuid = " + uuid + " was deleted successfully");
         } else {
-            printThereIsNotThisResume(uuid);
+            printResumeIsNotExist(uuid);
         }
     }
 
@@ -83,11 +83,11 @@ public class ArrayStorage {
         return -1;
     }
 
-    private void printThereIsNotThisResume(String uuid) {
+    private void printResumeIsNotExist(String uuid) {
         System.out.println("In the database there is not resume with uuid = " + uuid);
     }
 
-    private void printUpdateOrSaveResume(String updateOrSave,String uuid) {
+    private void printUpdateOrSaveResume(String updateOrSave, String uuid) {
         System.out.println(updateOrSave + " resume with uuid = " + uuid + "  was completed successfully");
     }
 }
