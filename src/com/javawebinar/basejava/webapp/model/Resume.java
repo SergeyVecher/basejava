@@ -1,7 +1,7 @@
-package com.javawebinar.basejava.model;
+package com.javawebinar.basejava.webapp.model;
 
 /**
- * com.urise.webapp.model.com.javawebinar.basejava.model.Resume class
+ * com.urise.webapp.model.com.javawebinar.basejava.webapp.model.Resume class
  */
 public class Resume implements Comparable<Resume> {
 

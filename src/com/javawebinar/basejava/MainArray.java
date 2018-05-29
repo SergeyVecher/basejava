@@ -1,13 +1,15 @@
-import com.javawebinar.basejava.model.Resume;
-import com.javawebinar.basejava.storage.ArrayStorage;
-import com.javawebinar.basejava.storage.Storage;
+package com.javawebinar.basejava;
+
+import com.javawebinar.basejava.webapp.model.Resume;
+import com.javawebinar.basejava.webapp.storage.ArrayStorage;
+import com.javawebinar.basejava.webapp.storage.Storage;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
 /**
- * Test for com.urise.webapp.storage.com.javawebinar.basejava.storage.ArrayStorage
+ * Test for com.urise.webapp.storage.com.javawebinar.basejava.webapp.storage.ArrayStorage
  */
 public class MainArray {
     private final static Storage ARRAY_STORAGE = new ArrayStorage();

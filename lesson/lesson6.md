@@ -15,6 +15,6 @@
 
 ## Домашнее задание
 - Сделать рефакторинг тестов: `saveOverflow` должно быть только для Array реализаций.
-- Рефакторинг: в конструктор com.javawebinar.webapp.model.com.javawebinar.basejava.model.Resume добавить второй параметр `fullName`
-- Сделать рефакторинг всех реализаций `Storage`: заменить метод `com.javawebinar.webapp.model.com.javawebinar.basejava.model.Resume[] getAll()` на `List<com.javawebinar.webapp.model.com.javawebinar.basejava.model.Resume> getAllSorted()`
+- Рефакторинг: в конструктор com.javawebinar.webapp.model.com.javawebinar.basejava.webapp.model.Resume добавить второй параметр `fullName`
+- Сделать рефакторинг всех реализаций `Storage`: заменить метод `com.javawebinar.webapp.model.com.javawebinar.basejava.webapp.model.Resume[] getAll()` на `List<com.javawebinar.webapp.model.com.javawebinar.basejava.webapp.model.Resume> getAllSorted()`
 - Реализовать до конца `MapUuidStorage`. Подумать что еще может быть search key в реализации на основе Map.

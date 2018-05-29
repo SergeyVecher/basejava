@@ -1,6 +1,6 @@
-package com.javawebinar.basejava.storage;
+package com.javawebinar.basejava.webapp.storage;
 
-import com.javawebinar.basejava.model.Resume;
+import com.javawebinar.basejava.webapp.model.Resume;
 
 import java.util.Arrays;
 
