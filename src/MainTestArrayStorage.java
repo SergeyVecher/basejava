@@ -1,11 +1,13 @@
 import com.javawebinar.basejava.model.Resume;
 import com.javawebinar.basejava.storage.ArrayStorage;
+import com.javawebinar.basejava.storage.SortedArrayStorage;
+import com.javawebinar.basejava.storage.Storage;
 
 /**
  * Test for com.urise.webapp.storage.com.javawebinar.basejava.storage.ArrayStorage
  */
 public class MainTestArrayStorage {
-    static final ArrayStorage ARRAY_STORAGE = new ArrayStorage();
+    static final Storage ARRAY_STORAGE = new SortedArrayStorage();
 
     public static void main(String[] args) {
         Resume r1 = new Resume();
