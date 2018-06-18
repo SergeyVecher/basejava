@@ -1,14 +1,16 @@
 package com.javawebinar.basejava.webapp;
 
+import com.javawebinar.basejava.webapp.exception.ExistStorageException;
+import com.javawebinar.basejava.webapp.exception.NotExistStorageException;
 import com.javawebinar.basejava.webapp.model.Resume;
 import com.javawebinar.basejava.webapp.storage.SortedArrayStorage;
 import com.javawebinar.basejava.webapp.storage.Storage;
 
 /**
- * Test for com.urise.webapp.storage.com.javawebinar.basejava.webapp.storage.ArrayStorage
+ * Test for com.javawebinar.basejava.webapp.storage.SortedArrayStorage
  */
 public class MainTestArrayStorage {
-    static final Storage ARRAY_STORAGE = new SortedArrayStorage();
+    private static final Storage ARRAY_STORAGE = new SortedArrayStorage();
 
     public static void main(String[] args) {
         Resume r1 = new Resume("uuid1");
@@ -20,13 +22,25 @@ public class MainTestArrayStorage {
         ARRAY_STORAGE.save(r1);
         ARRAY_STORAGE.save(r2);
         ARRAY_STORAGE.save(r3);
-        ARRAY_STORAGE.save(r1);
+        try {
+            ARRAY_STORAGE.save(r1);
+        } catch (ExistStorageException e) {
+            e.printStackTrace();
+        }
         ARRAY_STORAGE.update(r1);
-        ARRAY_STORAGE.update(r4);
+        try {
+            ARRAY_STORAGE.update(r4);
+        } catch (NotExistStorageException e) {
+            e.printStackTrace();
+        }
 
         System.out.println("Get r1: " + ARRAY_STORAGE.get(r1.getUuid()));
         System.out.println("Size: " + ARRAY_STORAGE.size());
-        System.out.println("Get dummy: " + ARRAY_STORAGE.get("dummy"));
+        try {
+            System.out.println("Get dummy: " + ARRAY_STORAGE.get("dummy"));
+        } catch (NotExistStorageException e) {
+            e.printStackTrace();
+        }
 
         printAll();
         ARRAY_STORAGE.delete(r1.getUuid());
@@ -37,7 +51,7 @@ public class MainTestArrayStorage {
         System.out.println("Size: " + ARRAY_STORAGE.size());
     }
 
-    static void printAll() {
+    private static void printAll() {
         System.out.println("\nGet All");
         for (Resume r : ARRAY_STORAGE.getAll()) {
             System.out.println(r);
