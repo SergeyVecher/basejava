@@ -49,9 +49,9 @@ public abstract class AbstractArrayStorageTest {
 
     @Test
     public void update() {
-        Resume resume5 = new Resume(uuid3);
-        storage.update(resume5);
-        assertEquals(resume5, storage.get(uuid3));
+        resume3 = resume4;
+        storage.update(resume3);
+        assertEquals(resume3, storage.get(uuid4));
     }
 
     @Test
