@@ -6,9 +6,6 @@ import com.javawebinar.basejava.webapp.model.Resume;
 import com.javawebinar.basejava.webapp.storage.SortedArrayStorage;
 import com.javawebinar.basejava.webapp.storage.Storage;
 
-/**
- * Test for com.javawebinar.basejava.webapp.storage.SortedArrayStorage
- */
 public class MainTestArrayStorage {
     private static final Storage ARRAY_STORAGE = new SortedArrayStorage();
 

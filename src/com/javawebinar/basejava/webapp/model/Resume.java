@@ -2,9 +2,6 @@ package com.javawebinar.basejava.webapp.model;
 
 import java.util.UUID;
 
-/**
- * com.urise.webapp.model.com.javawebinar.basejava.webapp.model.Resume class
- */
 public class Resume implements Comparable<Resume> {
 
     private final String uuid;
