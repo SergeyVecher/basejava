@@ -12,14 +12,14 @@ import static org.junit.Assert.*;
 
 public abstract class AbstractArrayStorageTest {
 
-    private Storage storage;
     private final String UUID_1 = "uuid1";
-    private Resume resume1 = new Resume(UUID_1);
     private final String UUID_2 = "uuid2";
-    private Resume resume2 = new Resume(UUID_2);
     private final String UUID_3 = "uuid3";
-    private Resume resume3 = new Resume(UUID_3);
     private final String UUID_4 = "uuid4";
+    private Storage storage;
+    private Resume resume1 = new Resume(UUID_1);
+    private Resume resume2 = new Resume(UUID_2);
+    private Resume resume3 = new Resume(UUID_3);
     private Resume resume4 = new Resume(UUID_4);
 
 
@@ -48,9 +48,8 @@ public abstract class AbstractArrayStorageTest {
 
     @Test
     public void update() {
-        Resume resume5 = new Resume(UUID_3);
-        storage.update(resume5);
-        assertEquals(resume5, storage.get(UUID_3));
+        storage.update(resume3);
+        assertEquals(resume3, storage.get(UUID_3));
     }
 
     @Test
@@ -103,7 +102,7 @@ public abstract class AbstractArrayStorageTest {
 
     @Test
     public void getAll() {
-        Resume[] copyStorage = new Resume[]{resume1, resume2, resume3};
+        Resume[] copyStorage = {resume1, resume2, resume3};
         assertArrayEquals(copyStorage, storage.getAll());
     }
 
