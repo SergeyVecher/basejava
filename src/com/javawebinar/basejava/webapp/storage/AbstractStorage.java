@@ -46,5 +46,5 @@ public abstract class AbstractStorage implements Storage {
 
     protected abstract Resume toGet(Object searchKey);
 
-    protected abstract void toDelete(Object searchKey);
+    protected abstract void toDelete(Object s);
 }
