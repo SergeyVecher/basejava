@@ -4,7 +4,6 @@ import com.javawebinar.basejava.webapp.exception.ExistStorageException;
 import com.javawebinar.basejava.webapp.exception.NotExistStorageException;
 import com.javawebinar.basejava.webapp.model.Resume;
 
-
 public abstract class AbstractStorage implements Storage {
 
     @Override
