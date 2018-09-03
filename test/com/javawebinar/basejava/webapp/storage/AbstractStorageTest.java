@@ -6,7 +6,8 @@ import com.javawebinar.basejava.webapp.model.Resume;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertEquals;
 
 
 public abstract class AbstractStorageTest {
@@ -16,10 +17,10 @@ public abstract class AbstractStorageTest {
     private final String UUID_3 = "uuid3";
     private final String UUID_4 = "uuid4";
     protected Storage storage;
-    private Resume resume1 = new Resume(UUID_1);
-    private Resume resume2 = new Resume(UUID_2);
-    private Resume resume3 = new Resume(UUID_3);
-    private Resume resume4 = new Resume(UUID_4);
+    private Resume resume1 = new Resume(UUID_1, "Alex");
+    private Resume resume2 = new Resume(UUID_2, "Bond");
+    private Resume resume3 = new Resume(UUID_3, "Clare");
+    private Resume resume4 = new Resume(UUID_4, "Dan");
 
 
     protected AbstractStorageTest(Storage storage) {
