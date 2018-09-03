@@ -2,6 +2,8 @@ package com.javawebinar.basejava.webapp.storage;
 
 import com.javawebinar.basejava.webapp.model.Resume;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -34,8 +36,8 @@ public class MapStorage extends AbstractStorage {
     }
 
     @Override
-    public Resume[] getAll() {
-        return map.values().toArray(new Resume[0]);
+    public List<Resume> getAllSorted() {
+        return new ArrayList<>(map.values());
     }
 
     @Override

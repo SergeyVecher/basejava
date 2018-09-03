@@ -6,7 +6,9 @@ import com.javawebinar.basejava.webapp.model.Resume;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.assertArrayEquals;
+import java.util.Arrays;
+import java.util.List;
+
 import static org.junit.Assert.assertEquals;
 
 
@@ -89,8 +91,8 @@ public abstract class AbstractStorageTest {
 
     @Test
     public void getAll() {
-        Resume[] copyStorage = {resume1, resume2, resume3};
-        assertArrayEquals(copyStorage, storage.getAll());
+        List<Resume> copyStorage = Arrays.asList(resume1, resume2, resume3);
+        assertEquals(copyStorage, storage.getAllSorted());
     }
 
     @Test
