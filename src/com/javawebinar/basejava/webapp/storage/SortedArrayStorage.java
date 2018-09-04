@@ -3,6 +3,7 @@ package com.javawebinar.basejava.webapp.storage;
 import com.javawebinar.basejava.webapp.model.Resume;
 
 import java.util.Arrays;
+import java.util.Comparator;
 
 public class SortedArrayStorage extends AbstractArrayStorage {
     @Override
@@ -23,6 +24,6 @@ public class SortedArrayStorage extends AbstractArrayStorage {
     @Override
     protected Integer getSearchKey(String uuid) {
         Resume searchKey = new Resume(uuid, "random");
-        return Arrays.binarySearch(storage, 0, size, searchKey);
+        return Arrays.binarySearch(storage, 0, size, searchKey, Comparator.comparing(Resume::getUuid));
     }
 }
