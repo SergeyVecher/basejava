@@ -3,13 +3,11 @@ package com.javawebinar.basejava.webapp.storage;
 import com.javawebinar.basejava.webapp.model.Resume;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class ListStorage extends AbstractStorage {
 
     private List<Resume> list = new ArrayList<>();
-
 
     @Override
     protected void toUpdate(Resume resume, Object searchKey) {
@@ -28,7 +26,7 @@ public class ListStorage extends AbstractStorage {
 
     @Override
     protected void toDelete(Object searchKey) {
-        list.remove(((Integer)searchKey).intValue());
+        list.remove(((Integer) searchKey).intValue());
     }
 
     @Override
@@ -37,8 +35,7 @@ public class ListStorage extends AbstractStorage {
     }
 
     @Override
-    public List<Resume> getAllSorted() {
-        Collections.sort(list);
+    protected List<Resume> getNewList() {
         return new ArrayList<>(list);
     }
 
