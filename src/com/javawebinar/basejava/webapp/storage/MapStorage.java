@@ -8,26 +8,26 @@ import java.util.Map;
 import java.util.TreeMap;
 
 public class MapStorage extends AbstractStorage {
-    private Map<Object, Resume> map = new TreeMap<>();
+    private Map<String, Resume> map = new TreeMap<>();
 
     @Override
     protected void toUpdate(Resume resume, Object searchKey) {
-        map.put(searchKey, resume);
+        map.put((String) searchKey, resume);
     }
 
     @Override
     protected void toSave(Resume resume, Object searchKey) {
-        map.put(searchKey, resume);
+        map.put((String) searchKey, resume);
     }
 
     @Override
     protected Resume toGet(Object searchKey) {
-        return map.get(searchKey);
+        return map.get((String) searchKey);
     }
 
     @Override
     protected void toDelete(Object searchKey) {
-        map.remove(searchKey);
+        map.remove((String) searchKey);
     }
 
     @Override
@@ -47,7 +47,7 @@ public class MapStorage extends AbstractStorage {
 
     @Override
     protected boolean isExist(Object searchKey) {
-        return map.containsKey(searchKey);
+        return map.containsKey((String) searchKey);
     }
 
     @Override

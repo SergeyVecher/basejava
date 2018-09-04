@@ -8,7 +8,7 @@ import java.util.Map;
 import java.util.TreeMap;
 
 public class MapSearchKeyResumeStorage extends AbstractStorage {
-    private Map<Object, Resume> map = new TreeMap<>();
+    private Map<String, Resume> map = new TreeMap<>();
 
     @Override
     protected void toUpdate(Resume resume, Object searchKey) {
