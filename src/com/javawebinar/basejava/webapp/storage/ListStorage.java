@@ -3,6 +3,7 @@ package com.javawebinar.basejava.webapp.storage;
 import com.javawebinar.basejava.webapp.model.Resume;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class ListStorage extends AbstractStorage {
@@ -37,7 +38,8 @@ public class ListStorage extends AbstractStorage {
 
     @Override
     public List<Resume> getAllSorted() {
-        return list;
+        Collections.sort(list);
+        return new ArrayList<>(list);
     }
 
     @Override
