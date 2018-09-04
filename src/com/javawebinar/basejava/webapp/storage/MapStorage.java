@@ -22,12 +22,12 @@ public class MapStorage extends AbstractStorage {
 
     @Override
     protected Resume toGet(Object searchKey) {
-        return map.get((String) searchKey);
+        return map.get(String.valueOf(searchKey));
     }
 
     @Override
     protected void toDelete(Object searchKey) {
-        map.remove((String) searchKey);
+        map.remove(String.valueOf(searchKey));
     }
 
     @Override
@@ -47,7 +47,7 @@ public class MapStorage extends AbstractStorage {
 
     @Override
     protected boolean isExist(Object searchKey) {
-        return map.containsKey((String) searchKey);
+        return map.containsKey(String.valueOf(searchKey));
     }
 
     @Override
