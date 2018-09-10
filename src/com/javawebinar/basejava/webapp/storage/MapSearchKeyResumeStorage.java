@@ -7,27 +7,27 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
-public class MapSearchKeyResumeStorage extends AbstractStorage {
+public class MapSearchKeyResumeStorage extends AbstractStorage<Resume> {
     private Map<String, Resume> map = new TreeMap<>();
 
     @Override
-    protected void toUpdate(Resume resume, Object searchKey) {
+    protected void toUpdate(Resume resume, Resume searchKey) {
         map.put(resume.getUuid(), resume);
     }
 
     @Override
-    protected void toSave(Resume resume, Object searchKey) {
+    protected void toSave(Resume resume, Resume searchKey) {
         map.put(resume.getUuid(), resume);
     }
 
     @Override
-    protected Resume toGet(Object resume) {
-        return (Resume) resume;
+    protected Resume toGet(Resume resume) {
+        return resume;
     }
 
     @Override
-    protected void toDelete(Object resume) {
-        map.remove(((Resume) resume).getUuid());
+    protected void toDelete(Resume resume) {
+        map.remove((resume).getUuid());
     }
 
     @Override
@@ -46,7 +46,7 @@ public class MapSearchKeyResumeStorage extends AbstractStorage {
     }
 
     @Override
-    protected boolean isExist(Object resume) {
+    protected boolean isExist(Resume resume) {
         return resume != null;
     }
 

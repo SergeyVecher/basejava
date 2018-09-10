@@ -6,7 +6,7 @@ import com.javawebinar.basejava.webapp.model.Resume;
 import java.util.Arrays;
 import java.util.List;
 
-public abstract class AbstractArrayStorage extends AbstractStorage {
+public abstract class AbstractArrayStorage extends AbstractStorage<Integer> {
 
     protected static final int STORAGE_LIMIT = 10000;
     protected Resume[] storage = new Resume[STORAGE_LIMIT];
@@ -19,29 +19,29 @@ public abstract class AbstractArrayStorage extends AbstractStorage {
     }
 
     @Override
-    protected void toUpdate(Resume resume, Object searchKey) {
-        storage[(Integer) searchKey] = resume;
+    protected void toUpdate(Resume resume, Integer searchKey) {
+        storage[searchKey] = resume;
     }
 
     @Override
-    protected void toSave(Resume resume, Object searchKey) {
+    protected void toSave(Resume resume, Integer searchKey) {
         if (size == STORAGE_LIMIT) {
             throw new StorageException("Storage overflow", resume.getUuid());
         } else {
-            insertElement(resume, (Integer) searchKey);
+            insertElement(resume, searchKey);
             size++;
         }
     }
 
     @Override
-    protected Resume toGet(Object searchKey) {
-        return storage[(Integer) searchKey];
+    protected Resume toGet(Integer searchKey) {
+        return storage[searchKey];
     }
 
     @Override
-    protected void toDelete(Object searchKey) {
+    protected void toDelete(Integer searchKey) {
         size--;
-        fillDeletedElement((Integer) searchKey);
+        fillDeletedElement(searchKey);
         storage[size] = null;
     }
 
@@ -56,8 +56,8 @@ public abstract class AbstractArrayStorage extends AbstractStorage {
     }
 
     @Override
-    protected boolean isExist(Object searchKey) {
-        return (Integer) searchKey >= 0;
+    protected boolean isExist(Integer searchKey) {
+        return searchKey >= 0;
     }
 
     protected abstract void fillDeletedElement(int index);
