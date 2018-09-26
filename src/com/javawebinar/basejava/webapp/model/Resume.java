@@ -16,7 +16,6 @@ public class Resume implements Comparable<Resume> {
 
     public Resume(String fullName) {
         this(UUID.randomUUID().toString(), fullName);
-        Objects.requireNonNull(fullName, "fullName must not be null");
     }
 
     public Resume(String uuid, String fullName) {
@@ -53,15 +52,17 @@ public class Resume implements Comparable<Resume> {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof Resume)) return false;
         Resume resume = (Resume) o;
-        return Objects.equals(uuid, resume.uuid) &&
-                Objects.equals(fullName, resume.fullName);
+        return Objects.equals(getUuid(), resume.getUuid()) &&
+                Objects.equals(getFullName(), resume.getFullName()) &&
+                Objects.equals(contacts, resume.contacts) &&
+                Objects.equals(sections, resume.sections);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(uuid, fullName);
+        return Objects.hash(getUuid(), getFullName(), contacts, sections);
     }
 
     @Override

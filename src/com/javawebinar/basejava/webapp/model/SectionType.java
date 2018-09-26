@@ -23,6 +23,8 @@ public enum SectionType {
 
     @Override
     public String toString() {
-        return title + ": ";
+        return "SectionType{" +
+                "title='" + title + '\'' +
+                '}';
     }
 }
