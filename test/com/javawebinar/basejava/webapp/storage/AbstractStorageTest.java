@@ -1,5 +1,6 @@
 package com.javawebinar.basejava.webapp.storage;
 
+import com.javawebinar.basejava.webapp.MainModel;
 import com.javawebinar.basejava.webapp.exception.ExistStorageException;
 import com.javawebinar.basejava.webapp.exception.NotExistStorageException;
 import com.javawebinar.basejava.webapp.model.Resume;
@@ -23,6 +24,8 @@ public abstract class AbstractStorageTest {
     private Resume resume2 = new Resume(UUID_2, "Bond");
     private Resume resume3 = new Resume(UUID_3, "Clare");
     private Resume resume4 = new Resume(UUID_4, "Dan");
+
+    MainModel test = new MainModel();
 
 
     protected AbstractStorageTest(Storage storage) {

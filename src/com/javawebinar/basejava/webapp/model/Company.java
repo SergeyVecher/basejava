@@ -1,26 +1,20 @@
 package com.javawebinar.basejava.webapp.model;
 
-import java.time.LocalDate;
+import java.util.List;
 import java.util.Objects;
 
 public class Company {
     private String companyName;
     private String companyAddress;
-    private LocalDate startDate;
-    private LocalDate finishDate;
-    private String description;
+    private List<PeriodInCompany> periods;
 
-    public Company(String companyName, String companyAddress, LocalDate startDate, LocalDate finishDate, String description) {
+    public Company(String companyName, String companyAddress, List<PeriodInCompany> periods) {
         Objects.requireNonNull(companyName);
         Objects.requireNonNull(companyAddress);
-        Objects.requireNonNull(startDate);
-        Objects.requireNonNull(finishDate);
-        Objects.requireNonNull(description);
+        Objects.requireNonNull(periods);
         this.companyName = companyName;
         this.companyAddress = companyAddress;
-        this.startDate = startDate;
-        this.finishDate = finishDate;
-        this.description = description;
+        this.periods = periods;
     }
 
     public String getCompanyName() {
@@ -31,16 +25,23 @@ public class Company {
         return companyAddress;
     }
 
-    public LocalDate getStartDate() {
-        return startDate;
+    public List<PeriodInCompany> getPeriods() {
+        return periods;
     }
 
-    public String getDescription() {
-        return description;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Company)) return false;
+        Company company = (Company) o;
+        return Objects.equals(getCompanyName(), company.getCompanyName()) &&
+                Objects.equals(getCompanyAddress(), company.getCompanyAddress()) &&
+                Objects.equals(getPeriods(), company.getPeriods());
     }
 
-    public LocalDate getFinishDate() {
-        return finishDate;
+    @Override
+    public int hashCode() {
+        return Objects.hash(getCompanyName(), getCompanyAddress(), getPeriods());
     }
 
     @Override
@@ -48,33 +49,7 @@ public class Company {
         return "Company{" +
                 "companyName='" + companyName + '\'' +
                 ", companyAddress='" + companyAddress + '\'' +
-                ", startDate=" + startDate +
-                ", finishDate=" + finishDate +
-                ", description='" + description + '\'' +
-                '}' + "\n";
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Company)) return false;
-
-        Company company = (Company) o;
-
-        if (!getCompanyName().equals(company.getCompanyName())) return false;
-        if (!getCompanyAddress().equals(company.getCompanyAddress())) return false;
-        if (!getStartDate().equals(company.getStartDate())) return false;
-        if (!getFinishDate().equals(company.getFinishDate())) return false;
-        return getDescription().equals(company.getDescription());
-    }
-
-    @Override
-    public int hashCode() {
-        int result = getCompanyName().hashCode();
-        result = 31 * result + getCompanyAddress().hashCode();
-        result = 31 * result + getStartDate().hashCode();
-        result = 31 * result + getFinishDate().hashCode();
-        result = 31 * result + getDescription().hashCode();
-        return result;
+                ", periods=" + periods +
+                '}';
     }
 }
