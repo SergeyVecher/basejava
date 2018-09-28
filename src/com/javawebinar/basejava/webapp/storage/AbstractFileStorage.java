@@ -10,7 +10,6 @@ import java.util.*;
 
 public abstract class AbstractFileStorage extends AbstractStorage<File> {
     private File directory;
-    private List<File> fileList;
 
     protected AbstractFileStorage(File directory) {
         Objects.requireNonNull(directory, "directory must not be null");
@@ -21,16 +20,17 @@ public abstract class AbstractFileStorage extends AbstractStorage<File> {
             throw new IllegalArgumentException(directory.getAbsolutePath() + " is not readable/writable");
         }
         this.directory = directory;
-        this.fileList = Arrays.asList(Objects.requireNonNull(directory.listFiles()));
     }
 
     @Override
     public void clear() {
+        List<File> fileList = Arrays.asList(Objects.requireNonNull(directory.listFiles()));
         fileList.forEach(this::toDelete);
     }
 
     @Override
     public int size() {
+        List<File> fileList = Arrays.asList(Objects.requireNonNull(directory.listFiles()));
         return fileList.size();
     }
 
@@ -48,31 +48,29 @@ public abstract class AbstractFileStorage extends AbstractStorage<File> {
         }
     }
 
-
     @Override
     protected boolean isExist(File file) {
         return file.exists();
     }
 
     @Override
-    protected void toSave(Resume r, File file) {
+    protected void toSave(Resume resume, File file) {
         try {
-            toWrite(r, file);
+            file.createNewFile();
+            toWrite(resume, file);
         } catch (IOException e) {
             throw new StorageException("IO error", file.getName(), e);
         }
     }
-
 
     @Override
     protected Resume toGet(File file) {
         try {
-            return toGetResume(file);
+            return toRead(file);
         } catch (IOException e) {
             throw new StorageException("IO error", file.getName(), e);
         }
     }
-
 
     @Override
     protected void toDelete(File file) {
@@ -82,14 +80,15 @@ public abstract class AbstractFileStorage extends AbstractStorage<File> {
     }
 
     @Override
-    public List<Resume> getAllSorted() {
+    protected List<Resume> getNewList() {
+        List<File> fileList = Arrays.asList(Objects.requireNonNull(directory.listFiles()));
         List<Resume> listOut = new ArrayList<>();
         fileList.forEach(x -> listOut.add(toGet(x)));
-        listOut.sort(Comparator.comparing(Resume::getUuid));
         return listOut;
     }
 
+
     protected abstract void toWrite(Resume r, File file) throws IOException;
 
-    protected abstract Resume toGetResume(File file) throws IOException;
+    protected abstract Resume toRead(File file) throws IOException;
 }

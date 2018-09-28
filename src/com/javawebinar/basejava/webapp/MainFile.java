@@ -13,7 +13,6 @@ public class MainFile {
         listPrint.forEach(x -> {
             if (x.isDirectory()) {
                 printFile(x);
-                System.out.println(x.getName());
             } else {
                 System.out.println(x.getName());
             }
@@ -29,7 +28,7 @@ public class MainFile {
             throw new RuntimeException("Error", e);
         }
 
-        File dir = new File("C:\\java\\basejava");
+        File dir = new File("C:\\java\\basejava\\src");
         printFile(dir);
         System.out.println(dir.isDirectory());
         String[] list = dir.list();
