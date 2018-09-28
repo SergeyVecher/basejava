@@ -24,13 +24,13 @@ public abstract class AbstractFileStorage extends AbstractStorage<File> {
 
     @Override
     public void clear() {
-        List<File> fileList = Arrays.asList(Objects.requireNonNull(directory.listFiles()));
+        List<File> fileList = getFileList(directory);
         fileList.forEach(this::toDelete);
     }
 
     @Override
     public int size() {
-        List<File> fileList = Arrays.asList(Objects.requireNonNull(directory.listFiles()));
+        List<File> fileList = getFileList(directory);
         return fileList.size();
     }
 
@@ -57,7 +57,7 @@ public abstract class AbstractFileStorage extends AbstractStorage<File> {
     protected void toSave(Resume resume, File file) {
         try {
             file.createNewFile();
-            toWrite(resume, file);
+            toUpdate(resume, file);
         } catch (IOException e) {
             throw new StorageException("IO error", file.getName(), e);
         }
@@ -81,12 +81,17 @@ public abstract class AbstractFileStorage extends AbstractStorage<File> {
 
     @Override
     protected List<Resume> getNewList() {
-        List<File> fileList = Arrays.asList(Objects.requireNonNull(directory.listFiles()));
+        List<File> fileList = getFileList(directory);
         List<Resume> listOut = new ArrayList<>();
         fileList.forEach(x -> listOut.add(toGet(x)));
         return listOut;
     }
 
+    private List<File> getFileList(File file) {
+        if (file == null) {
+            throw new StorageException("file is null", null);
+        } else return Arrays.asList(file.listFiles());
+    }
 
     protected abstract void toWrite(Resume r, File file) throws IOException;
 
