@@ -88,7 +88,7 @@ public abstract class AbstractFileStorage extends AbstractStorage<File> {
     }
 
     private List<File> getFileList(File file) {
-        if (file == null) {
+        if (file.listFiles() == null) {
             throw new StorageException("file is null", null);
         } else return Arrays.asList(file.listFiles());
     }
