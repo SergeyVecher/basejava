@@ -3,6 +3,8 @@ package com.javawebinar.basejava.webapp.model;
 import java.util.Objects;
 
 public class ContentSection extends Section {
+    private static final long serialVersionUID = 1L;
+
     private String content;
 
     public ContentSection(String content) {

@@ -1,5 +1,6 @@
 package com.javawebinar.basejava.webapp.model;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.Month;
 import java.util.Arrays;
@@ -9,7 +10,9 @@ import java.util.Objects;
 import static com.javawebinar.basejava.webapp.util.DateUtil.NOW;
 import static com.javawebinar.basejava.webapp.util.DateUtil.of;
 
-public class Company {
+public class Company implements Serializable {
+    private static final long serialVersionUID = 1L;
+
     private String companyName;
     private String companyAddress;
     private List<PeriodInCompany> periods;
@@ -64,7 +67,9 @@ public class Company {
                 '}';
     }
 
-    public static class PeriodInCompany {
+    public static class PeriodInCompany implements Serializable {
+        private static final long serialVersionUID = 1L;
+
         private final LocalDate startTime;
         private final LocalDate finishTime;
         private final String description;
