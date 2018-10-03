@@ -1,5 +1,6 @@
 package com.javawebinar.basejava.webapp.model;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
@@ -9,6 +10,10 @@ public class ListSection extends Section {
     public ListSection(List<Section> sections) {
         Objects.requireNonNull(sections);
         this.sections = sections;
+    }
+
+    public ListSection(Section... sections) {
+        this(Arrays.asList(sections));
     }
 
     public List<Section> getSections() {

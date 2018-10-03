@@ -5,7 +5,10 @@ import com.javawebinar.basejava.webapp.model.Resume;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Objects;
 
 
 public abstract class AbstractFileStorage extends AbstractStorage<File> {
@@ -30,8 +33,11 @@ public abstract class AbstractFileStorage extends AbstractStorage<File> {
 
     @Override
     public int size() {
-        List<File> fileList = getFileList(directory);
-        return fileList.size();
+        String[] listFiles = directory.list();
+        if (listFiles == null) {
+            throw new StorageException("Directory read error", null);
+        }
+        return listFiles.length;
     }
 
     @Override
@@ -44,7 +50,7 @@ public abstract class AbstractFileStorage extends AbstractStorage<File> {
         try {
             toWrite(r, file);
         } catch (IOException e) {
-            throw new StorageException("IO error", file.getName(), e);
+            throw new StorageException("File write error", file.getName(), e);
         }
     }
 
@@ -57,10 +63,10 @@ public abstract class AbstractFileStorage extends AbstractStorage<File> {
     protected void toSave(Resume resume, File file) {
         try {
             file.createNewFile();
-            toUpdate(resume, file);
         } catch (IOException e) {
-            throw new StorageException("IO error", file.getName(), e);
+            throw new StorageException("Couldn't create file " + file.getAbsolutePath(), file.getName(), e);
         }
+        toUpdate(resume, file);
     }
 
     @Override
@@ -75,7 +81,7 @@ public abstract class AbstractFileStorage extends AbstractStorage<File> {
     @Override
     protected void toDelete(File file) {
         if (!file.delete()) {
-            throw new StorageException("IO error", file.getName());
+            throw new StorageException("File delete error", file.getName());
         }
     }
 
@@ -89,7 +95,7 @@ public abstract class AbstractFileStorage extends AbstractStorage<File> {
 
     private List<File> getFileList(File file) {
         if (file.listFiles() == null) {
-            throw new StorageException("file is null", null);
+            throw new StorageException("Directory read error", null);
         } else return Arrays.asList(file.listFiles());
     }
 

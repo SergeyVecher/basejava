@@ -17,11 +17,11 @@ public class MainModel {
                 new ContentSection("Achievement two"))));
 
         resume.addSection(SectionType.EDUCATION, new CompanySection(Arrays.asList(new Company("University one",
-                        "address", Arrays.asList(new PeriodInCompany(2003, Month.MAY, 2008, Month.MAY, "student"),
-                new PeriodInCompany(2003, Month.MAY, 2008, Month.MAY, "student"))),
+                        "address", Arrays.asList(new Company.PeriodInCompany(2003, Month.MAY, 2008, Month.MAY, "student"),
+                new Company.PeriodInCompany(2003, Month.MAY, 2008, Month.MAY, "student"))),
                 new Company("University two",
-                        "address", Arrays.asList(new PeriodInCompany(2011, Month.MAY, 2014, Month.MAY, "student"),
-                        new PeriodInCompany(2011, Month.MAY, 2014, Month.MAY, "student"))))));
+                        "address", Arrays.asList(new Company.PeriodInCompany(2011, Month.MAY, 2014, Month.MAY, "student"),
+                        new Company.PeriodInCompany(2011, Month.MAY, 2014, Month.MAY, "student"))))));
 
         for (SectionType type : SectionType.values()) {
             if (resume.getSection(type) != null) continue;
