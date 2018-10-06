@@ -5,21 +5,18 @@ import com.javawebinar.basejava.webapp.model.Resume;
 
 import java.io.*;
 
-public class ObjectStreamStorage extends AbstractFileStorage {
+public class ObjectStreamStorage implements StrategyIO {
 
-    protected ObjectStreamStorage(File directory) {
-        super(directory);
-    }
 
     @Override
-    protected void toWrite(Resume r, OutputStream outputStream) throws IOException {
+    public void toWrite(Resume resume, OutputStream outputStream) throws IOException {
         try (ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream)) {
-            objectOutputStream.writeObject(r);
+            objectOutputStream.writeObject(resume);
         }
     }
 
     @Override
-    protected Resume toRead(InputStream inputStream) throws IOException {
+    public Resume toRead(InputStream inputStream) throws IOException {
         try (ObjectInputStream objectInputStream = new ObjectInputStream(inputStream)) {
             return (Resume) objectInputStream.readObject();
         } catch (ClassNotFoundException e) {

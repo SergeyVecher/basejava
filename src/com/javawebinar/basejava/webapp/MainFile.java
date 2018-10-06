@@ -8,11 +8,15 @@ import java.util.List;
 import java.util.Objects;
 
 public class MainFile {
-    public static void printFile(File file) {
+    public static void printFile(File file, int count) {
         List<File> listPrint = Arrays.asList(Objects.requireNonNull(file.listFiles()));
         listPrint.forEach(x -> {
+            for (int i = 0; i <= count; i++) {
+                System.out.print("\t");
+            }
             if (x.isDirectory()) {
-                printFile(x);
+                System.out.println(x.getName());
+                printFile(x, count + 1);
             } else {
                 System.out.println(x.getName());
             }
@@ -28,8 +32,8 @@ public class MainFile {
             throw new RuntimeException("Error", e);
         }
 
-        File dir = new File("C:\\java\\basejava\\src");
-        printFile(dir);
+        File dir = new File("D:\\java\\project\\basejava\\src");
+        printFile(dir, 0);
         System.out.println(dir.isDirectory());
         String[] list = dir.list();
         if (list != null) {
