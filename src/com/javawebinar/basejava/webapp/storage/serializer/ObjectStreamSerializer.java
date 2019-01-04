@@ -1,12 +1,11 @@
-package com.javawebinar.basejava.webapp.storage;
+package com.javawebinar.basejava.webapp.storage.serializer;
 
 import com.javawebinar.basejava.webapp.exception.StorageException;
 import com.javawebinar.basejava.webapp.model.Resume;
 
 import java.io.*;
 
-public class ObjectStreamStorage implements StrategyIO {
-
+public class ObjectStreamSerializer implements StreamSerializer {
 
     @Override
     public void toWrite(Resume resume, OutputStream outputStream) throws IOException {
