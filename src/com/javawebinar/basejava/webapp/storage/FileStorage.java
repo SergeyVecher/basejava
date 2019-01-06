@@ -84,13 +84,13 @@ public class FileStorage extends AbstractStorage<File> {
     }
 
     @Override
-    protected List<Resume> getNewList() {
+    protected List<Resume> doCopyAll() {
         return getFileList().map(this::toGet).collect(Collectors.toList());
     }
 
     private Stream<File> getFileList() {
         if (directory.listFiles() == null) {
-            throw new StorageException("Directory read error", null);
+            throw new StorageException("Directory read error");
         } else return Stream.of(directory.listFiles());
     }
 }

@@ -30,7 +30,7 @@ public abstract class AbstractPathStorage extends AbstractStorage<Path> {
         try {
             Files.list(directory).forEach(this::toDelete);
         } catch (IOException e) {
-            throw new StorageException("Path delete error", null);
+            throw new StorageException("Path delete error");
         }
     }
 
@@ -68,7 +68,7 @@ public abstract class AbstractPathStorage extends AbstractStorage<Path> {
     }
 
     @Override
-    protected List<Resume> getNewList() {
+    protected List<Resume> doCopyAll() {
         List<Path> PathList = getPathList(directory);
         List<Resume> listOut = new ArrayList<>();
         PathList.forEach(x -> listOut.add(toGet(x)));
