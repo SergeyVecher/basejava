@@ -1,27 +1,23 @@
 package com.javawebinar.basejava.webapp.model;
 
-import java.util.Objects;
-
 public enum ContactType {
-    PHONE("Mobile phone"),
-    EMAIL("Email"),
-    GITHUB("Profile GitHub");
+    PHONE("Тел."),
+    MOBILE("Мобильный"),
+    HOME_PHONE("Домашний тел."),
+    SKYPE("Skype"),
+    MAIL("Почта"),
+    LINKEDIN("Профиль LinkedIn"),
+    GITHUB("Профиль GitHub"),
+    STATCKOVERFLOW("Профиль Stackoverflow"),
+    HOME_PAGE("Домашняя страница");
 
     private final String title;
 
     ContactType(String title) {
-        Objects.requireNonNull(title);
         this.title = title;
     }
 
     public String getTitle() {
         return title;
-    }
-
-    @Override
-    public String toString() {
-        return "ContactType{" +
-                "title='" + title + '\'' +
-                '}';
     }
 }
