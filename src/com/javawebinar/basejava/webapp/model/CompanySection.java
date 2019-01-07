@@ -1,13 +1,19 @@
 package com.javawebinar.basejava.webapp.model;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
+@XmlAccessorType(XmlAccessType.FIELD)
 public class CompanySection extends Section {
     private static final long serialVersionUID = 1L;
 
-    private final List<Company> companies;
+    public CompanySection() {
+    }
+
+    private List<Company> companies;
 
     public CompanySection(List<Company> companies) {
         Objects.requireNonNull(companies);

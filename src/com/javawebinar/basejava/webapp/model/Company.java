@@ -1,5 +1,10 @@
 package com.javawebinar.basejava.webapp.model;
 
+import com.javawebinar.basejava.webapp.util.LocalDateAdapter;
+
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.Month;
@@ -10,8 +15,12 @@ import java.util.Objects;
 import static com.javawebinar.basejava.webapp.util.DateUtil.NOW;
 import static com.javawebinar.basejava.webapp.util.DateUtil.of;
 
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Company implements Serializable {
     private static final long serialVersionUID = 1L;
+
+    public Company() {
+    }
 
     private String companyName;
     private String companyAddress;
@@ -67,12 +76,18 @@ public class Company implements Serializable {
                 '}';
     }
 
+    @XmlAccessorType(XmlAccessType.FIELD)
     public static class PeriodInCompany implements Serializable {
         private static final long serialVersionUID = 1L;
 
-        private final LocalDate startTime;
-        private final LocalDate finishTime;
-        private final String description;
+        public PeriodInCompany() {
+        }
+
+        @XmlJavaTypeAdapter(LocalDateAdapter.class)
+        private LocalDate startTime;
+        @XmlJavaTypeAdapter(LocalDateAdapter.class)
+        private LocalDate finishTime;
+        private String description;
 
         public PeriodInCompany(LocalDate startTime, String description) {
             this.startTime = startTime;

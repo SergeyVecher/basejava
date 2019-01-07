@@ -1,9 +1,15 @@
 package com.javawebinar.basejava.webapp.model;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 import java.util.Objects;
 
+@XmlAccessorType(XmlAccessType.FIELD)
 public class ContentSection extends Section {
     private static final long serialVersionUID = 1L;
+
+    public ContentSection() {
+    }
 
     private String content;
 
