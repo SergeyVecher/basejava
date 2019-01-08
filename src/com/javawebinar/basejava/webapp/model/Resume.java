@@ -14,7 +14,6 @@ import java.util.UUID;
 public class Resume implements Comparable<Resume>, Serializable {
     private static final long serialVersionUID = 1L;
 
-    // Unique identifier
     private String uuid;
 
     private String fullName;
@@ -46,6 +45,18 @@ public class Resume implements Comparable<Resume>, Serializable {
 
     public Section getSection(SectionType type) {
         return sections.get(type);
+    }
+
+    public Map<ContactType, String> getContacts() {
+        return contacts;
+    }
+
+    public Map<SectionType, Section> getSections() {
+        return sections;
+    }
+
+    public String getFullName() {
+        return fullName;
     }
 
     public void addContact(ContactType type, String value) {
