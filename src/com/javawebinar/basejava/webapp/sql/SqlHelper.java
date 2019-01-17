@@ -1,8 +1,6 @@
 package com.javawebinar.basejava.webapp.sql;
 
-import com.javawebinar.basejava.webapp.exception.ExistStorageException;
 import com.javawebinar.basejava.webapp.exception.StorageException;
-import org.postgresql.util.PSQLException;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -25,12 +23,7 @@ public class SqlHelper {
              PreparedStatement ps = connection.prepareStatement(sql)) {
             return executor.execute(ps);
         } catch (SQLException e) {
-            if (e instanceof PSQLException) {
-                if (e.getSQLState().equals("23505")) {
-                    throw new ExistStorageException(null);
-                }
-            }
-            throw new StorageException(e);
+            throw ExceptionUtil.exceptionConvert(e);
         }
     }
 
@@ -43,7 +36,7 @@ public class SqlHelper {
                 return res;
             } catch (SQLException e) {
                 connection.rollback();
-                throw e;
+                throw ExceptionUtil.exceptionConvert(e);
             }
         } catch (SQLException e) {
             throw new StorageException(e);

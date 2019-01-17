@@ -11,6 +11,7 @@ import org.junit.runners.Suite;
         MapSearchKeyResumeStorageTest.class,
         PathStorageTest.class,
         FileStorageTest.class,
+        SqlStorageTest.class
 })
 public class StartAllTest {
 }

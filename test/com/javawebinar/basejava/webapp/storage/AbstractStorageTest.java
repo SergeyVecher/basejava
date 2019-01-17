@@ -3,6 +3,7 @@ package com.javawebinar.basejava.webapp.storage;
 import com.javawebinar.basejava.webapp.Config;
 import com.javawebinar.basejava.webapp.exception.ExistStorageException;
 import com.javawebinar.basejava.webapp.exception.NotExistStorageException;
+import com.javawebinar.basejava.webapp.model.ContactType;
 import com.javawebinar.basejava.webapp.model.Resume;
 import org.junit.Before;
 import org.junit.Test;
@@ -36,8 +37,11 @@ public abstract class AbstractStorageTest {
         R3 = new Resume(UUID_3, "Name3");
         R4 = new Resume(UUID_4, "Name4");
 
-//        R1.addContact(ContactType.MAIL, "mail1@ya.ru");
-//        R1.addContact(ContactType.PHONE, "11111");
+        R1.addContact(ContactType.MAIL, "mail1@ya.ru");
+        R1.addContact(ContactType.PHONE, "11111");
+
+        R4.addContact(ContactType.SKYPE, "skype2");
+        R4.addContact(ContactType.PHONE, "22222");
 //        R1.addSection(SectionType.OBJECTIVE, new TextSection("Objective1"));
 //        R1.addSection(SectionType.PERSONAL, new TextSection("Personal data"));
 //        R1.addSection(SectionType.ACHIEVEMENT, new ListSection("Achivment11", "Achivment12", "Achivment13"));
@@ -53,8 +57,7 @@ public abstract class AbstractStorageTest {
 //                                new Organization.Position(1996, Month.JANUARY, 2000, Month.DECEMBER, "aspirant", null),
 //                                new Organization.Position(2001, Month.MARCH, 2005, Month.JANUARY, "student", "IT facultet")),
 //                        new Organization("Organization12", "http://Organization12.ru")));
-//        R2.addContact(ContactType.SKYPE, "skype2");
-//        R2.addContact(ContactType.PHONE, "22222");
+
 //        R1.addSection(SectionType.EXPERIENCE,
 //                new OrganizationSection(
 //                        new Organization("Organization2", "http://Organization2.ru",
@@ -87,6 +90,10 @@ public abstract class AbstractStorageTest {
     @Test
     public void update() throws Exception {
         Resume newResume = new Resume(UUID_1, "New Name");
+        R1.addContact(ContactType.MAIL, "mailjk1@ya.ru");
+        R1.addContact(ContactType.SKYPE, "skype22");
+        R1.addContact(ContactType.MOBILE, "8888999");
+
         storage.update(newResume);
         assertTrue(newResume.equals(storage.get(UUID_1)));
     }
@@ -100,7 +107,7 @@ public abstract class AbstractStorageTest {
     public void getAllSorted() throws Exception {
         List<Resume> list = storage.getAllSorted();
         assertEquals(3, list.size());
-        assertEquals(list, Arrays.asList(R1, R2, R3));
+        assertEquals(Arrays.asList(R1, R2, R3), list);
     }
 
     @Test
