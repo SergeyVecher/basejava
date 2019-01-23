@@ -134,8 +134,7 @@ public class SqlStorage implements Storage {
                 ps.setString(1, resume.getUuid());
                 ps.setString(2, e.getKey().name());
                 ps.setString(3, e.getValue());
-                ps.executeBatch();
-                ps.executeUpdate();
+                ps.addBatch();
             }
             ps.executeBatch();
         }
